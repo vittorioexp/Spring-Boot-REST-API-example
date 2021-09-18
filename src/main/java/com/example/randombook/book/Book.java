@@ -2,17 +2,14 @@ package com.example.randombook.book;
 
 public class Book {
 
-    private int id_book;
-    private String title;
-    private String author;
-    private String publisher;
-    private String isbn;
-    private int id_category;
-    private String images;
+    private final int id_book;
+    private final String title;
+    private final String author;
+    private final String publisher;
+    private final String isbn;
+    private final int id_category;
+    private final String images;
 
-    public Book() {
-
-    }
 
     public Book(int id_book, String title, String author, String publisher, String isbn, int id_category, String images) {
         this.id_book = id_book;
@@ -50,34 +47,6 @@ public class Book {
 
     public String getImages() {
         return images;
-    }
-
-    public void setIDBook(int id_book) {
-        this.id_book = id_book;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public void setAuthor(String author) {
-        this.author = author;
-    }
-
-    public void setPublisher(String publisher) {
-        this.publisher = publisher;
-    }
-
-    public void setIsbn(String isbn) {
-        this.isbn = isbn;
-    }
-
-    public void setIDCategory(int id_category) {
-        this.id_category = id_category;
-    }
-
-    public void setImages(String images) {
-        this.images = images;
     }
 
 }
