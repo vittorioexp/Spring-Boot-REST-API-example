@@ -1,5 +1,9 @@
 package com.example.randombook.book;
 
+import com.example.randombook.category.*;
+
+import java.util.List;
+
 public interface BookDAO {
     Book findById(int id_book);
     List<Book> findAll();
