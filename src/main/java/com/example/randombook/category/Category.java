@@ -2,20 +2,28 @@ package com.example.randombook.category;
 
 public class Category {
 
-    private final int id_category;
+    private final int id;
     private final String name;
 
-    public Category(int id_category, String name) {
-        this.id_category = id_category;
+    public Category(int id, String name) {
+        this.id = id;
         this.name = name;
     }
 
-    public int getIdCategory() {
-        return this.id_category;
+    public int getId() {
+        return this.id;
     }
 
     public String getName() {
         return this.name;
+    }
+
+    @Override
+    public String toString() {
+        return "Category{" +
+                "id=" + getId() +
+                ", name='" + getName() + "'" +
+                '}';
     }
 
 }

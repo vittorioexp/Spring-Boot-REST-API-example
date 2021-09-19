@@ -3,10 +3,10 @@ package com.example.randombook.category;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
-import com.example.randombook.category.*;
 import org.springframework.stereotype.Repository;
 
 import java.util.*;
+
 
 @Repository
 public class JdbcCategoryDAO implements CategoryDAO {
@@ -32,11 +32,9 @@ public class JdbcCategoryDAO implements CategoryDAO {
     };
 
     @Override
-    public Optional<Category> findById(int id_category) {
+    public Optional<Category> findById(int id) {
         String sql = "SELECT * FROM category where id_category = ?";
-        // TODO: fix error here
-        //return Optional.of(jdbcTemplate.queryForObject(sql, rowMapper, id_category));
-        return null;
+        return Optional.of(jdbcTemplate.queryForObject(sql, rowMapper, id));
     }
 
     @Override
@@ -46,8 +44,8 @@ public class JdbcCategoryDAO implements CategoryDAO {
     }
 
     @Override
-    public void delete(int id_category) {
-        jdbcTemplate.update("delete from category where id_category = ?", id_category);
+    public void delete(int id) {
+        jdbcTemplate.update("delete from category where id_category = ?", id);
     }
 
     @Override
@@ -58,15 +56,16 @@ public class JdbcCategoryDAO implements CategoryDAO {
     @Override
     public Category update(Category category) {
         String sql = "update category set name = ? where id_category = ?";
-        jdbcTemplate.update(
-                sql,
-                category.getName(),
-                category.getIdCategory()
-        );
-        return new Category(
-                category.getIdCategory(),
+        Category c = new Category(
+                category.getId(),
                 category.getName()
         );
+        jdbcTemplate.update(
+                sql,
+                c.getName(),
+                c.getId()
+        );
+        return c;
     }
 
     @Override
