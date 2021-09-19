@@ -1,28 +1,32 @@
 package com.example.randombook.book;
 
+import com.example.randombook.category.Category;
+
+import java.sql.Date;
+
 public class Book {
 
-    private final int id_book;
+    private final int id;
     private final String title;
     private final String author;
-    private final String publisher;
+    private final Date releaseDate;
     private final String isbn;
-    private final int id_category;
+    private final Category category;
     private final String images;
 
 
-    public Book(int id_book, String title, String author, String publisher, String isbn, int id_category, String images) {
-        this.id_book = id_book;
+    public Book(int id, String title, String author, Date releaseDate, String isbn, Category category, String images) {
+        this.id = id;
         this.title = title;
         this.author = author;
-        this.publisher = publisher;
+        this.releaseDate = releaseDate;
         this.isbn = isbn;
-        this.id_category = id_category;
+        this.category = category;
         this.images = images;
     }
 
-    public int getIDBook() {
-        return id_book;
+    public int getId() {
+        return id;
     }
 
     public String getTitle() {
@@ -33,20 +37,32 @@ public class Book {
         return author;
     }
 
-    public String getPublisher() {
-        return publisher;
+    public Date getReleaseDate() {
+        return releaseDate;
     }
 
     public String getIsbn() {
         return isbn;
     }
 
-    public int getIDCategory() {
-        return id_category;
+    public Category getCategory() {
+        return category;
     }
 
     public String getImages() {
         return images;
     }
 
+    @Override
+    public String toString() {
+        return "Book{" +
+                "id=" + getId() +
+                ", title='" + getTitle() + "'" +
+                ", author='" + getAuthor() + "'" +
+                ", releaseDate='" + getReleaseDate().toString() + "'" +
+                ", isbn='" + getIsbn() + "'" +
+                ", category='" + getCategory().getName() + "'" +
+                ", images='" + getImages() + "'" +
+                '}';
+    }
 }
