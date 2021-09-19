@@ -4,9 +4,11 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import com.example.randombook.category.*;
+import org.springframework.stereotype.Repository;
 
 import java.util.*;
 
+@Repository
 public class JdbcCategoryDAO implements CategoryDAO {
 
     private List<Category> categories;
