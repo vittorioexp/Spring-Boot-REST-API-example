@@ -52,10 +52,10 @@ public class JdbcCategoryDAO implements CategoryDAO {
     }
 
     @Override
-    public Category update(Category category) {
+    public Category update(Category category, int id) {
         String sql = "update category set name = ? where id_category = ?";
         Category c = new Category(
-                category.getId(),
+                id,
                 category.getName()
         );
         jdbcTemplate.update(
