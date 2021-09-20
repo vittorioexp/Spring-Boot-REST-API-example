@@ -37,3 +37,15 @@ INSERT INTO "user" (id_user, username, email, password, picture) VALUES
 
 INSERT INTO "user" (id_user, username, email, password, picture) VALUES
     (3, 'adamsmith', 'adamsmith@adamsmith.it', 'adamsmithadamsmith', 'https://images.unsplash.com/photo-1508138221679-760a23a2285b');
+
+INSERT INTO reading (id_reading, id_user, id_book, date, state) VALUES
+    (1, 1, 2, '2021-08-20', 'COMPLETED');
+
+INSERT INTO reading (id_reading, id_user, id_book, date, state) VALUES
+    (2, 1, 2, '2021-07-20', 'COMPLETED');
+
+INSERT INTO reading (id_reading, id_user, id_book, date, state) VALUES
+    (3, 2, 4, '2021-09-20', 'COMPLETED');
+
+INSERT INTO reading (id_reading, id_user, id_book, date, state) VALUES
+    (4, 2, 5, '2021-09-29', 'COMPLETED');

@@ -22,3 +22,13 @@ CREATE TABLE user(
     isbn VARCHAR(20),
     picture VARCHAR(100)
 );
+
+CREATE TABLE reading (
+    id_reading SERIAL PRIMARY KEY,
+    id_user INT NOT NULL,
+    id_book INT NOT NULL,
+    date DATE NOT NULL,
+    state VARCHAR(100) NOT NULL,
+    FOREIGN KEY (id_user) REFERENCES "user" (id_user),
+    FOREIGN KEY (id_book) REFERENCES book (id_book)
+);
