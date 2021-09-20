@@ -28,3 +28,12 @@ INSERT INTO book (id_book, title, author, release_date, isbn, id_category, image
 
 INSERT INTO book (id_book, title, author, release_date, isbn, id_category, images) VALUES
     (5, 'Conscious', 'Annaka Harris', '2021-09-17', '947354211', 2, 'https://images-na.ssl-images-amazon.com/images/I/91Oy00Se3YL.jpg');
+
+INSERT INTO "user" (id_user, username, email, password, picture) VALUES
+    (1, 'vittorioexp', 'vittorioexp@fakeemail.it', '123456789A', 'https://images.unsplash.com/photo-1508138221679-760a23a2285b');
+
+INSERT INTO "user" (id_user, username, email, password, picture) VALUES
+    (2, 'samuperti', 'samuperti@fakeemail.it', 'ssssssssqqqA', 'https://images.unsplash.com/photo-1508138221679-760a23a2285b');
+
+INSERT INTO "user" (id_user, username, email, password, picture) VALUES
+    (3, 'adamsmith', 'adamsmith@adamsmith.it', 'adamsmithadamsmith', 'https://images.unsplash.com/photo-1508138221679-760a23a2285b');

@@ -13,3 +13,12 @@ CREATE TABLE book(
     FOREIGN KEY (id_category) REFERENCES category (id_category),
     images VARCHAR(100)
 );
+
+CREATE TABLE user(
+    id_user SERIAL PRIMARY KEY,
+    username VARCHAR(100) NOT NULL,
+    email VARCHAR(100) NOT NULL,
+    password VARCHAR(100) NOT NULL,
+    isbn VARCHAR(20),
+    picture VARCHAR(100)
+);
