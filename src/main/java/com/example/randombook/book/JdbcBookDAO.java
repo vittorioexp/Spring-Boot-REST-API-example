@@ -52,6 +52,19 @@ public class JdbcBookDAO implements BookDAO {
     }
 
     @Override
+    public Optional<Book> findRandomBook(int id_category) {
+        List<Book> books;
+        if (id_category > 0) {
+            books = findAllByCategory(id_category);
+        } else {
+            books = findAll();
+        }
+        // generating the index using Math.random()
+        int index = (int)(Math.random() * books.size());
+        return Optional.of(books.get(index));
+    }
+
+    @Override
     public Book create(Book book) {
         Map<String,Object> parameters = new HashMap<>();
         parameters.put("title", book.getTitle());

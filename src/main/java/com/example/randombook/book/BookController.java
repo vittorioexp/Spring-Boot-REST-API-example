@@ -26,8 +26,13 @@ public class BookController {
         return dao.findAllByCategory(id_category);
     }
 
+    @GetMapping("/random")
+    public Optional<Book> findRandomBook(@RequestParam(value = "category", defaultValue = "0") int id_category) {
+        return dao.findRandomBook(id_category);
+    }
+
     @GetMapping("/{id}")
-    public Optional<Book> findOne(@PathVariable int id) {
+    public Optional<Book> findById(@PathVariable int id) {
         return dao.findById(id);
     }
 
