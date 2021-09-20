@@ -3,17 +3,23 @@ package com.example.randombook.reading;
 import java.sql.Date;
 
 public class Reading {
-    private final int user;
 
+    private final int id;
+    private final int user;
     private final int book;
     private final Date date;
     private final String state;
 
-    public Reading(int user, int book, Date date, String state) {
+    public Reading(int id, int user, int book, Date date, String state) {
+        this.id = id;
         this.user = user;
         this.book = book;
         this.date = date;
         this.state = state;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public int getUser() {
@@ -35,7 +41,8 @@ public class Reading {
     @Override
     public String toString() {
         return "Reading{" +
-                "user=" + user +
+                "id=" + id +
+                ", user=" + user +
                 ", book=" + book +
                 ", date=" + date +
                 ", state='" + state + '\'' +
