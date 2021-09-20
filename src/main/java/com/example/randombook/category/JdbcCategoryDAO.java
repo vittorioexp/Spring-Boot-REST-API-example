@@ -11,12 +11,10 @@ import java.util.*;
 @Repository
 public class JdbcCategoryDAO implements CategoryDAO {
 
-    private List<Category> categories;
     private JdbcTemplate jdbcTemplate;
     private SimpleJdbcInsert insertCategory;
 
     public JdbcCategoryDAO(JdbcTemplate jdbcTemplate) {
-        this.categories = new ArrayList<>();
         this.jdbcTemplate = jdbcTemplate;
         insertCategory = new SimpleJdbcInsert(jdbcTemplate)
                 .withTableName("category")

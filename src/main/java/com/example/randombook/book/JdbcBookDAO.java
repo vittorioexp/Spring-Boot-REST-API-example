@@ -11,12 +11,10 @@ import java.util.*;
 @Repository
 public class JdbcBookDAO implements BookDAO {
 
-    private List<Book> books;
     private JdbcTemplate jdbcTemplate;
     private SimpleJdbcInsert insertBook;
 
     public JdbcBookDAO(JdbcTemplate jdbcTemplate) {
-        this.books = new ArrayList<>();
         this.jdbcTemplate = jdbcTemplate;
         insertBook = new SimpleJdbcInsert(jdbcTemplate)
                 .withTableName("book")
