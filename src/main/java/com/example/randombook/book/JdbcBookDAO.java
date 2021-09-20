@@ -6,9 +6,7 @@ import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Repository;
 import com.example.randombook.category.*;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Repository
 public class JdbcBookDAO implements BookDAO {
@@ -18,7 +16,7 @@ public class JdbcBookDAO implements BookDAO {
     private SimpleJdbcInsert insertBook;
 
     public JdbcBookDAO(JdbcTemplate jdbcTemplate) {
-        this.books = new ArrayList<Book>();
+        this.books = new ArrayList<>();
         this.jdbcTemplate = jdbcTemplate;
         insertBook = new SimpleJdbcInsert(jdbcTemplate)
                 .withTableName("book")
@@ -26,11 +24,12 @@ public class JdbcBookDAO implements BookDAO {
     }
 
     RowMapper<Book> rowMapper = (rs, rowNum) -> {
+        int id_category = rs.getInt("id_category");
         Category category = new Category(
-                rs.getInt("id_category"),
+                id_category,
                 ""
         );
-        Book book = new Book(
+        return new Book(
                 rs.getInt("id_book"),
                 rs.getString("title"),
                 rs.getString("author"),
@@ -39,42 +38,82 @@ public class JdbcBookDAO implements BookDAO {
                 category,
                 rs.getString("images")
         );
-        return book;
     };
 
     @Override
-    public Book findById(int id_book) {
-        return null;
+    public Optional<Book> findById(int id) {
+        String sql = "SELECT * FROM book where id_book = ?";
+        return Optional.of(jdbcTemplate.queryForObject(sql, rowMapper, id));
     }
 
     @Override
     public List<Book> findAll() {
-        return null;
-    }
-
-    @Override
-    public Book create(Book book) {
-        return null;
-    }
-
-    @Override
-    public Book update(Book book) {
-        return null;
-    }
-
-    @Override
-    public void delete(int id_book) {
-
-    }
-
-    @Override
-    public long count() {
-        return 0;
+        String sql = "SELECT * FROM book";
+        return jdbcTemplate.query(sql, rowMapper);
     }
 
     @Override
     public List<Book> findAllByCategory(Category category) {
         return null;
+    }
+
+    @Override
+    public Book create(Book book) {
+        Map<String,Object> parameters = new HashMap<>();
+        parameters.put("title", book.getTitle());
+        parameters.put("author", book.getAuthor());
+        parameters.put("releaseDate", book.getReleaseDate());
+        parameters.put("isbn", book.getIsbn());
+        parameters.put("category", book.getCategory());
+        parameters.put("images", book.getImages());
+        Number id_book = insertBook.executeAndReturnKey(parameters);
+        return new Book(
+                (Integer) id_book,
+                book.getTitle(),
+                book.getAuthor(),
+                book.getReleaseDate(),
+                book.getIsbn(),
+                book.getCategory(),
+                book.getImages()
+        );
+    }
+
+    @Override
+    public Book update(Book book) {
+        String sql = "update book set title = ?, " +
+                "author = ?, release_date = ?, " +
+                "isbn = ?, id_category = ?, " +
+                "images = ? where id_book = ?";
+        Book b = new Book(
+                book.getId(),
+                book.getTitle(),
+                book.getAuthor(),
+                book.getReleaseDate(),
+                book.getIsbn(),
+                book.getCategory(),
+                book.getImages()
+        );
+        jdbcTemplate.update(
+                sql,
+                b.getTitle(),
+                b.getAuthor(),
+                b.getReleaseDate(),
+                b.getIsbn(),
+                b.getCategory().getId(),
+                b.getImages(),
+                b.getId()
+        );
+        return b;
+    }
+
+    @Override
+    public void delete(int id) {
+        jdbcTemplate.update("delete from book where id_book = ?",id);
+    }
+
+    @Override
+    public long count() {
+        return jdbcTemplate.queryForObject("select count(*) from book", Long.class);
     }
 }
 

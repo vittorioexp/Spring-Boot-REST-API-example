@@ -16,20 +16,17 @@ public class JdbcCategoryDAO implements CategoryDAO {
     private SimpleJdbcInsert insertCategory;
 
     public JdbcCategoryDAO(JdbcTemplate jdbcTemplate) {
-        this.categories = new ArrayList<Category>();
+        this.categories = new ArrayList<>();
         this.jdbcTemplate = jdbcTemplate;
         insertCategory = new SimpleJdbcInsert(jdbcTemplate)
                 .withTableName("category")
                 .usingGeneratedKeyColumns("id_category");
     }
 
-    RowMapper<Category> rowMapper = (rs, rowNum) -> {
-        Category c = new Category(
-                rs.getInt("id_category"),
-                rs.getString("name")
-        );
-        return c;
-    };
+    RowMapper<Category> rowMapper = (rs, rowNum) -> new Category(
+            rs.getInt("id_category"),
+            rs.getString("name")
+    );
 
     @Override
     public Optional<Category> findById(int id) {
@@ -44,13 +41,14 @@ public class JdbcCategoryDAO implements CategoryDAO {
     }
 
     @Override
-    public void delete(int id) {
-        jdbcTemplate.update("delete from category where id_category = ?", id);
-    }
-
-    @Override
-    public long count() {
-        return jdbcTemplate.queryForObject("select count(*) from category", Long.class);
+    public Category create(Category category) {
+        Map<String,Object> parameters = new HashMap<>();
+        parameters.put("name", category.getName());
+        Number id_category = insertCategory.executeAndReturnKey(parameters);
+        return new Category(
+                (Integer) id_category,
+                category.getName()
+        );
     }
 
     @Override
@@ -69,13 +67,12 @@ public class JdbcCategoryDAO implements CategoryDAO {
     }
 
     @Override
-    public Category create(Category category) {
-        Map<String,Object> parameters = new HashMap<>();
-        parameters.put("name", category.getName());
-        Number id_category = insertCategory.executeAndReturnKey(parameters);
-        return new Category(
-                (Integer) id_category,
-                category.getName()
-        );
+    public void delete(int id) {
+        jdbcTemplate.update("delete from category where id_category = ?", id);
+    }
+
+    @Override
+    public long count() {
+        return jdbcTemplate.queryForObject("select count(*) from category", Long.class);
     }
 }
