@@ -14,7 +14,6 @@ public class Book {
     private final int category;
     private final String images;
 
-
     public Book(int id, String title, String author, Date releaseDate, String isbn, int category, String images) {
         this.id = id;
         this.title = title;
@@ -56,13 +55,15 @@ public class Book {
     @Override
     public String toString() {
         return "Book{" +
-                "id=" + getId() +
-                ", title='" + getTitle() + "'" +
-                ", author='" + getAuthor() + "'" +
-                ", releaseDate='" + getReleaseDate().toString() + "'" +
-                ", isbn='" + getIsbn() + "'" +
-                ", category='" + getCategory() + "'" +
-                ", images='" + getImages() + "'" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", author='" + author + '\'' +
+                ", releaseDate=" + releaseDate +
+                ", isbn='" + isbn + '\'' +
+                ", category=" + category +
+                ", images='" + images + '\'' +
                 '}';
     }
+
+
 }
