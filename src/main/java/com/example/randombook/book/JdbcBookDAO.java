@@ -24,18 +24,13 @@ public class JdbcBookDAO implements BookDAO {
     }
 
     RowMapper<Book> rowMapper = (rs, rowNum) -> {
-        int id_category = rs.getInt("id_category");
-        Category category = new Category(
-                id_category,
-                ""
-        );
         return new Book(
                 rs.getInt("id_book"),
                 rs.getString("title"),
                 rs.getString("author"),
                 rs.getDate("release_date"),
                 rs.getString("isbn"),
-                category,
+                rs.getInt("id_category"),
                 rs.getString("images")
         );
     };
@@ -53,8 +48,9 @@ public class JdbcBookDAO implements BookDAO {
     }
 
     @Override
-    public List<Book> findAllByCategory(Category category) {
-        return null;
+    public List<Book> findAllByCategory(int id_category) {
+        String sql = "SELECT * FROM book where id_category = ?";
+        return jdbcTemplate.query(sql, rowMapper, id_category);
     }
 
     @Override
@@ -79,13 +75,13 @@ public class JdbcBookDAO implements BookDAO {
     }
 
     @Override
-    public Book update(Book book) {
+    public Book update(Book book, int id) {
         String sql = "update book set title = ?, " +
                 "author = ?, release_date = ?, " +
                 "isbn = ?, id_category = ?, " +
                 "images = ? where id_book = ?";
         Book b = new Book(
-                book.getId(),
+                id,
                 book.getTitle(),
                 book.getAuthor(),
                 book.getReleaseDate(),
@@ -99,7 +95,7 @@ public class JdbcBookDAO implements BookDAO {
                 b.getAuthor(),
                 b.getReleaseDate(),
                 b.getIsbn(),
-                b.getCategory().getId(),
+                b.getCategory(),
                 b.getImages(),
                 b.getId()
         );

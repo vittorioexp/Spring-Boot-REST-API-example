@@ -11,11 +11,11 @@ public class Book {
     private final String author;
     private final Date releaseDate;
     private final String isbn;
-    private final Category category;
+    private final int category;
     private final String images;
 
 
-    public Book(int id, String title, String author, Date releaseDate, String isbn, Category category, String images) {
+    public Book(int id, String title, String author, Date releaseDate, String isbn, int category, String images) {
         this.id = id;
         this.title = title;
         this.author = author;
@@ -45,7 +45,7 @@ public class Book {
         return isbn;
     }
 
-    public Category getCategory() {
+    public int getCategory() {
         return category;
     }
 
@@ -61,7 +61,7 @@ public class Book {
                 ", author='" + getAuthor() + "'" +
                 ", releaseDate='" + getReleaseDate().toString() + "'" +
                 ", isbn='" + getIsbn() + "'" +
-                ", category='" + getCategory().getName() + "'" +
+                ", category='" + getCategory() + "'" +
                 ", images='" + getImages() + "'" +
                 '}';
     }
