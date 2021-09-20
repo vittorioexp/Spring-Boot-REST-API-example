@@ -21,8 +21,8 @@ public class Category {
     @Override
     public String toString() {
         return "Category{" +
-                "id=" + getId() +
-                ", name='" + getName() + "'" +
+                "id=" + id +
+                ", name='" + name + '\'' +
                 '}';
     }
 
