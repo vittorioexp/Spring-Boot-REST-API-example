@@ -32,3 +32,14 @@ CREATE TABLE reading (
     FOREIGN KEY (id_user) REFERENCES "user" (id_user),
     FOREIGN KEY (id_book) REFERENCES book (id_book)
 );
+
+CREATE TABLE feedback (
+    id_feedback SERIAL PRIMARY KEY,
+    id_user INT NOT NULL,
+    id_book INT NOT NULL,
+    rate INT NOT NULL,
+    text VARCHAR(10000),
+    date DATE NOT NULL,
+    FOREIGN KEY (id_user) REFERENCES "user" (id_user),
+    FOREIGN KEY (id_book) REFERENCES book (id_book)
+);

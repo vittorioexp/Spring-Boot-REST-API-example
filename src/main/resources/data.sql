@@ -49,3 +49,12 @@ INSERT INTO reading (id_reading, id_user, id_book, date, state) VALUES
 
 INSERT INTO reading (id_reading, id_user, id_book, date, state) VALUES
     (4, 2, 5, '2021-09-29', 'COMPLETED');
+
+INSERT INTO feedback (id_feedback, id_user, id_book, rate, text, date) VALUES
+    (1, 1, 1, 3, 'not that interesting...', '2021-09-22');
+
+INSERT INTO feedback (id_feedback, id_user, id_book, rate, text, date) VALUES
+    (2, 1, 2, 5, 'Super cool!', '2021-09-22');
+
+INSERT INTO feedback (id_feedback, id_user, id_book, rate, text, date) VALUES
+    (3, 2, 5, 3, 'Ok!', '2021-09-22');
