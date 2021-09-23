@@ -14,3 +14,6 @@ Test file: src/test/java/com.example.randombook/RandombookApplicationTests.java
 
 It contains basic test operations.
 
+## API Documentation
+
+![book controller](https://github.com/vittorioexp/randombook-spring-rest-api/blob/main/img/API%20Documentation/book-controller.PNG) 
