@@ -11,5 +11,6 @@ Clone the repo with git clone, as usual.
 ## Running the tests
 
 Test file: src/test/java/com.example.randombook/RandombookApplicationTests.java
+
 It contains basic test operations.
 
