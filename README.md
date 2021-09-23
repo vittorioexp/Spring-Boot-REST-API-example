@@ -8,10 +8,6 @@ The purpose of the web app will be to promote reading by proposing to read a ran
 
 Clone the repo with git clone, as usual.
 
-## Prerequisites
-
-None.
-
 ## Running the tests
 
 Test file: src/test/java/com.example.randombook/RandombookApplicationTests.java
