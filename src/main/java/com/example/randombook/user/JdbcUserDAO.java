@@ -50,7 +50,7 @@ public class JdbcUserDAO implements UserDAO {
         Map<String,Object> parameters = new HashMap<>();
         parameters.put("username", user.getUsername());
         parameters.put("email", user.getEmail());
-        parameters.put("password", user.getPassword());
+        parameters.put("password", user.getPassword()); // Password should be encrypted
         parameters.put("picture", user.getPicture());
         Number id_user = insertUser.executeAndReturnKey(parameters);
         return new User(
