@@ -23,4 +23,4 @@ To view the API Documentation, run the code and navigate to http://localhost:808
 ![category controller](https://github.com/vittorioexp/randombook-spring-rest-api/blob/main/img/API%20Documentation/category-controller.PNG)
 ![feedback controller](https://github.com/vittorioexp/randombook-spring-rest-api/blob/main/img/API%20Documentation/feedback-controller.PNG)
 ![reading controller](https://github.com/vittorioexp/randombook-spring-rest-api/blob/main/img/API%20Documentation/reading-controller.PNG)
-![user controller](https://github.com/vittorioexp/randombook-spring-rest-api/blob/main/img/API%20Documentation/user-controller.PNG)
+![customer controller](https://github.com/vittorioexp/randombook-spring-rest-api/blob/main/img/API%20Documentation/customer-controller.PNG)

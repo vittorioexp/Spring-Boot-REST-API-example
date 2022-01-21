@@ -1,6 +1,5 @@
 package com.example.randombook.reading;
 
-import com.example.randombook.book.Book;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -27,9 +26,9 @@ public class ReadingController {
         return dao.findById(id);
     }
 
-    @GetMapping("/user/{id}")
-    public List<Reading> findAllByUserId(@PathVariable int id) {
-        return dao.findAllByUserId(id);
+    @GetMapping("/customer/{id}")
+    public List<Reading> findAllByCustomerId(@PathVariable int id) {
+        return dao.findAllByCustomerId(id);
     }
 
     @GetMapping("/book/{id}")

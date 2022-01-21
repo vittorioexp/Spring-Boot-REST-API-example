@@ -1,6 +1,5 @@
 package com.example.randombook.feedback;
 
-import com.example.randombook.category.Category;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,9 +21,9 @@ public class FeedbackController {
         return dao.findAll();
     }
 
-    @GetMapping("/user/{id_user}")
-    public List<Feedback> findAllByUserId(@PathVariable int id_user) {
-        return dao.findAllByUserId(id_user);
+    @GetMapping("/customer/{id_customer}")
+    public List<Feedback> findAllByCustomerId(@PathVariable int id_customer) {
+        return dao.findAllByCustomerId(id_customer);
     }
 
     @GetMapping("/book/{id_book}")

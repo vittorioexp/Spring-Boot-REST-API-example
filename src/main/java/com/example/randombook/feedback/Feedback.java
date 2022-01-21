@@ -5,15 +5,15 @@ import java.sql.Date;
 public class Feedback {
 
     private final int id;
-    private final int user;
+    private final int customer;
     private final int book;
     private final int rate;
     private final String text;
     private final Date date;
 
-    public Feedback(int id, int user, int book, int rate, String text, Date date) {
+    public Feedback(int id, int customer, int book, int rate, String text, Date date) {
         this.id = id;
-        this.user = user;
+        this.customer = customer;
         this.book = book;
         this.rate = rate;
         this.text = text;
@@ -24,8 +24,8 @@ public class Feedback {
         return id;
     }
 
-    public int getUser() {
-        return user;
+    public int getCustomer() {
+        return customer;
     }
 
     public int getBook() {
@@ -48,7 +48,7 @@ public class Feedback {
     public String toString() {
         return "Feedback{" +
                 "id=" + id +
-                ", user=" + user +
+                ", customer=" + customer +
                 ", book=" + book +
                 ", rate=" + rate +
                 ", text='" + text + '\'' +

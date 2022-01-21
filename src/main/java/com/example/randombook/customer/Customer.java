@@ -1,6 +1,6 @@
-package com.example.randombook.user;
+package com.example.randombook.customer;
 
-public class User {
+public class Customer {
 
     private final int id;
     private final String username;
@@ -8,7 +8,7 @@ public class User {
     private final String password;
     private final String picture;
 
-    public User(int id, String username, String email, String password, String picture) {
+    public Customer(int id, String username, String email, String password, String picture) {
         this.id = id;
         this.username = username;
         this.email = email;
@@ -38,7 +38,7 @@ public class User {
 
     @Override
     public String toString() {
-        return "User{" +
+        return "Customer{" +
                 "id=" + id +
                 ", username='" + username + '\'' +
                 ", email='" + email + '\'' +

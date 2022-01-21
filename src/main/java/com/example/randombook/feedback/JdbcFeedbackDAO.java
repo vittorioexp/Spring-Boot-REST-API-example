@@ -1,6 +1,5 @@
 package com.example.randombook.feedback;
 
-import com.example.randombook.category.Category;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
@@ -26,7 +25,7 @@ public class JdbcFeedbackDAO implements FeedbackDAO {
 
     RowMapper<Feedback> rowMapper = (rs, rowNum) -> new Feedback(
             rs.getInt("id_feedback"),
-            rs.getInt("id_user"),
+            rs.getInt("id_customer"),
             rs.getInt("id_book"),
             rs.getInt("rate"),
             rs.getString("text"),
@@ -46,9 +45,9 @@ public class JdbcFeedbackDAO implements FeedbackDAO {
     }
 
     @Override
-    public List<Feedback> findAllByUserId(int id_user) {
-        String sql = "SELECT * FROM feedback where id_user = ?";
-        return jdbcTemplate.query(sql, rowMapper, id_user);
+    public List<Feedback> findAllByCustomerId(int id_customer) {
+        String sql = "SELECT * FROM feedback where id_customer = ?";
+        return jdbcTemplate.query(sql, rowMapper, id_customer);
     }
 
     @Override
@@ -60,7 +59,7 @@ public class JdbcFeedbackDAO implements FeedbackDAO {
     @Override
     public Feedback create(Feedback feedback) {
         Map<String,Object> parameters = new HashMap<>();
-        parameters.put("id_user", feedback.getUser());
+        parameters.put("id_customer", feedback.getCustomer());
         parameters.put("id_book", feedback.getBook());
         parameters.put("rate", feedback.getRate());
         parameters.put("text", feedback.getText());
@@ -68,7 +67,7 @@ public class JdbcFeedbackDAO implements FeedbackDAO {
         Number id_feedback = insertFeedback.executeAndReturnKey(parameters);
         return new Feedback(
                 (Integer) id_feedback,
-                feedback.getUser(),
+                feedback.getCustomer(),
                 feedback.getBook(),
                 feedback.getRate(),
                 feedback.getText(),
@@ -79,13 +78,13 @@ public class JdbcFeedbackDAO implements FeedbackDAO {
     @Override
     public Feedback update(Feedback feedback, int id) {
         String sql = "update feedback set " +
-                "id_user = ?," +
+                "id_customer = ?," +
                 "id_book = ?, rate = ?," +
                 "text = ?, date = ? " +
                 "where id_feedback = ?";
         Feedback f = new Feedback(
                 id,
-                feedback.getUser(),
+                feedback.getCustomer(),
                 feedback.getBook(),
                 feedback.getRate(),
                 feedback.getText(),
@@ -93,7 +92,7 @@ public class JdbcFeedbackDAO implements FeedbackDAO {
         );
         jdbcTemplate.update(
                 sql,
-                f.getUser(),
+                f.getCustomer(),
                 f.getBook(),
                 f.getRate(),
                 f.getText(),

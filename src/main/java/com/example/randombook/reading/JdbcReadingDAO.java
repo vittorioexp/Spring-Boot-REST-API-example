@@ -1,7 +1,5 @@
 package com.example.randombook.reading;
 
-import com.example.randombook.book.Book;
-import com.example.randombook.category.Category;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
@@ -27,7 +25,7 @@ public class JdbcReadingDAO implements ReadingDAO{
 
     RowMapper<Reading> rowMapper = (rs, rowNum) -> new Reading(
             rs.getInt("id_reading"),
-            rs.getInt("id_user"),
+            rs.getInt("id_customer"),
             rs.getInt("id_book"),
             rs.getDate("date"),
             rs.getString("state")
@@ -46,9 +44,9 @@ public class JdbcReadingDAO implements ReadingDAO{
     }
 
     @Override
-    public List<Reading> findAllByUserId(int id_user) {
-        String sql = "SELECT * FROM reading where id_user = ?";
-        return jdbcTemplate.query(sql, rowMapper, id_user);
+    public List<Reading> findAllByCustomerId(int id_customer) {
+        String sql = "SELECT * FROM reading where id_customer = ?";
+        return jdbcTemplate.query(sql, rowMapper, id_customer);
     }
 
     @Override
@@ -60,14 +58,14 @@ public class JdbcReadingDAO implements ReadingDAO{
     @Override
     public Reading create(Reading reading) {
         Map<String,Object> parameters = new HashMap<>();
-        parameters.put("id_user", reading.getUser());
+        parameters.put("id_customer", reading.getCustomer());
         parameters.put("id_book", reading.getBook());
         parameters.put("date", reading.getDate());
         parameters.put("state", reading.getState());
         Number id_reading = insertReading.executeAndReturnKey(parameters);
         return new Reading(
                 (Integer) id_reading,
-                reading.getUser(),
+                reading.getCustomer(),
                 reading.getBook(),
                 reading.getDate(),
                 reading.getState()
@@ -76,19 +74,19 @@ public class JdbcReadingDAO implements ReadingDAO{
 
     @Override
     public Reading update(Reading reading, int id_reading) {
-        String sql = "update reading set id_user = ?, " +
+        String sql = "update reading set id_customer = ?, " +
                 "id_book = ?, date = ?, " +
                 "state = ? where id_reading = ?";
         Reading r = new Reading(
                 id_reading,
-                reading.getUser(),
+                reading.getCustomer(),
                 reading.getBook(),
                 reading.getDate(),
                 reading.getState()
         );
         jdbcTemplate.update(
                 sql,
-                r.getUser(),
+                r.getCustomer(),
                 r.getBook(),
                 r.getDate(),
                 r.getState(),

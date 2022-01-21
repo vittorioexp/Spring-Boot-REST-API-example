@@ -1,6 +1,6 @@
 package com.example.randombook;
 
-import com.example.randombook.user.User;
+import com.example.randombook.customer.Customer;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -35,22 +35,24 @@ public class RandombookApplicationTests {
 		HttpHeaders headers = new HttpHeaders();
 		HttpEntity<String> entity = new HttpEntity<String>(null, headers);
 
-		ResponseEntity<String> response = restTemplate.exchange(getRootUrl() + "/user",
+		ResponseEntity<String> response = restTemplate.exchange(getRootUrl() + "/customer",
 				HttpMethod.GET, entity, String.class);
+
+		System.out.println(response);
 
 		Assert.assertNotNull(response.getBody());
 	}
 
 	@Test
-	public void testGetUserById() {
-		User user = restTemplate.getForObject(getRootUrl() + "/user/1", User.class);
-		System.out.println(user.getEmail());
-		Assert.assertNotNull(user);
+	public void testGetCustomerById() {
+		Customer customer = restTemplate.getForObject(getRootUrl() + "/customer/1", Customer.class);
+		System.out.println(customer.getEmail());
+		Assert.assertNotNull(customer);
 	}
 
 	@Test
-	public void testCreateUser() {
-		User user = new User(
+	public void testCreateCustomer() {
+		Customer customer = new Customer(
 				0,
 				"lollo",
 				"lollo@lollo.com",
@@ -58,7 +60,7 @@ public class RandombookApplicationTests {
 				""
 		);
 
-		ResponseEntity<User> postResponse = restTemplate.postForEntity(getRootUrl() + "/user", user, User.class);
+		ResponseEntity<Customer> postResponse = restTemplate.postForEntity(getRootUrl() + "/customer", customer, Customer.class);
 		Assert.assertNotNull(postResponse);
 		Assert.assertNotNull(postResponse.getBody());
 	}
@@ -66,31 +68,31 @@ public class RandombookApplicationTests {
 	@Test
 	public void testUpdatePost() {
 		int id = 1;
-		User user = restTemplate.getForObject(getRootUrl() + "/user/" + id, User.class);
-		User u = new User(
-				user.getId(),
-				user.getUsername(),
-				user.getEmail(),
+		Customer customer = restTemplate.getForObject(getRootUrl() + "/customer/" + id, Customer.class);
+		Customer u = new Customer(
+				customer.getId(),
+				customer.getUsername(),
+				customer.getEmail(),
 				"new-super-password",
-				user.getPicture()
+				customer.getPicture()
 		);
 
-		restTemplate.put(getRootUrl() + "/user/" + id, user);
+		restTemplate.put(getRootUrl() + "/customer/" + id, customer);
 
-		User updatedUser = restTemplate.getForObject(getRootUrl() + "/user/" + id, User.class);
-		Assert.assertNotNull(updatedUser);
+		Customer updatedCustomer = restTemplate.getForObject(getRootUrl() + "/customer/" + id, Customer.class);
+		Assert.assertNotNull(updatedCustomer);
 	}
 
 	@Test
 	public void testDeletePost() {
 		int id = 3;
-		User user = restTemplate.getForObject(getRootUrl() + "/user/" + id, User.class);
-		Assert.assertNotNull(user);
+		Customer customer = restTemplate.getForObject(getRootUrl() + "/customer/" + id, Customer.class);
+		Assert.assertNotNull(customer);
 
-		restTemplate.delete(getRootUrl() + "/user/" + id);
+		restTemplate.delete(getRootUrl() + "/customer/" + id);
 
 		try {
-			user = restTemplate.getForObject(getRootUrl() + "/users/" + id, User.class);
+			customer = restTemplate.getForObject(getRootUrl() + "/customer/" + id, Customer.class);
 		} catch (final HttpClientErrorException e) {
 			Assert.assertEquals(e.getStatusCode(), HttpStatus.NOT_FOUND);
 		}

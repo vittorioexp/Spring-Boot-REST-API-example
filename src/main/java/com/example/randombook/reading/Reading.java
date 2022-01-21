@@ -5,14 +5,14 @@ import java.sql.Date;
 public class Reading {
 
     private final int id;
-    private final int user;
+    private final int customer;
     private final int book;
     private final Date date;
     private final String state;
 
-    public Reading(int id, int user, int book, Date date, String state) {
+    public Reading(int id, int customer, int book, Date date, String state) {
         this.id = id;
-        this.user = user;
+        this.customer = customer;
         this.book = book;
         this.date = date;
         this.state = state;
@@ -22,8 +22,8 @@ public class Reading {
         return id;
     }
 
-    public int getUser() {
-        return user;
+    public int getCustomer() {
+        return customer;
     }
 
     public int getBook() {
@@ -42,7 +42,7 @@ public class Reading {
     public String toString() {
         return "Reading{" +
                 "id=" + id +
-                ", user=" + user +
+                ", user=" + customer +
                 ", book=" + book +
                 ", date=" + date +
                 ", state='" + state + '\'' +
