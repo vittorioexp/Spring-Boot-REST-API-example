@@ -9,11 +9,31 @@ This repository shows the following features:
 * JDBC
 
 
+
 Random Book
 ----
 
 Random Book wants to promote reading by proposing to read a random book of a given category. 
 Readings made by users are tracked, and each book can be rated.
+
+
+
+Starting the example
+----
+
+The example requires Java 17 and PostgreSQL 14.
+
+Create a PostgreSQL database, using the database name, username, and password contained in `application.properties`. 
+
+Run the application in an IDE using its main class or using Gradle: 
+
+```
+./gradlew bootRun
+```
+
+Interact with the application on http://localhost:8080.
+
+
 
 
 API Documentation
