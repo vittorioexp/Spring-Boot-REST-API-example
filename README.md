@@ -2,7 +2,7 @@ Spring Boot REST API example
 =====
 
 This repository is an example application for the Spring Boot framework.
-The example is a standalone REST API server in Java.
+The example is a REST API server in Java.
 
 This repository shows the following features:
 * Controllers
@@ -13,7 +13,7 @@ Random Book
 ----
 
 Random Book wants to promote reading by proposing to read a random book of a given category. 
-Each book can be rated and the readings made are tracked.
+Readings made by users are tracked, and each book can be rated.
 
 
 API Documentation
