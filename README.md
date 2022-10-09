@@ -1,20 +1,23 @@
-# RandomBook
+Spring Boot REST API example
+=====
 
-This is a simple coding exercise which implements a REST API built using Spring Boot and JDBC. I created this project to learn some features of Spring Boot. 
+This repository is an example application for the Spring Boot framework.
+The example is a standalone REST API server in Java.
 
-The purpose of the web app will be to promote reading by proposing to read a random book of a given category. Each book can be rated and the readings made are tracked.
+This repository shows the following features:
+* Controllers
+* JDBC
 
-## Getting Started
 
-Clone the repo with git clone, as usual.
+Random Book
+----
 
-## Running the tests
+Random Book wants to promote reading by proposing to read a random book of a given category. 
+Each book can be rated and the readings made are tracked.
 
-Test file: src/test/java/com.example.randombook/RandombookApplicationTests.java
 
-It contains basic test operations.
-
-## API Documentation
+API Documentation
+----
 
 To view the API Documentation, run the code and navigate to http://localhost:8080/swagger-ui.html
 
