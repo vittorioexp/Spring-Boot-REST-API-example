@@ -20,10 +20,3 @@ API Documentation
 ----
 
 To view the API Documentation, run the code and navigate to http://localhost:8080/swagger-ui.html
-
-
-![book controller](https://github.com/vittorioexp/randombook-spring-rest-api/blob/main/img/API%20Documentation/book-controller.PNG)
-![category controller](https://github.com/vittorioexp/randombook-spring-rest-api/blob/main/img/API%20Documentation/category-controller.PNG)
-![feedback controller](https://github.com/vittorioexp/randombook-spring-rest-api/blob/main/img/API%20Documentation/feedback-controller.PNG)
-![reading controller](https://github.com/vittorioexp/randombook-spring-rest-api/blob/main/img/API%20Documentation/reading-controller.PNG)
-![customer controller](https://github.com/vittorioexp/randombook-spring-rest-api/blob/main/img/API%20Documentation/customer-controller.PNG)
